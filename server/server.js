@@ -18,11 +18,9 @@ app.get('/favicon.ico', function(req, res){
 })
 
 app.get('/', (req, res) => {
-    const template = fs.readFileSync(__dirname + '/../build/index.html')
+    const template = fs.readFileSync(__dirname + '/../build/indexSvr.html')
 
     const result = vm.runInNewContext('`' + template + '`', { 'reactDom': content})
-
-    console.log(result)
 
     res.writeHead(200, {"Content-Type": "text/html"})
     res.end(result)
