@@ -1,6 +1,6 @@
 import React from "react"
 import ReactDOM from "react-dom"
 
-import { Home } from "../components/Home"
+import { App } from "../components/App"
 
-ReactDOM.hydrate( <Home />, document.getElementById("app"))
+ReactDOM.hydrate( <App />, document.getElementById("app"))
