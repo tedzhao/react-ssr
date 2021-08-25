@@ -1,4 +1,6 @@
-# react-bff
+# react-ssr
+
+React server side render
 
 1. npm run build to build the frontend componment
 
