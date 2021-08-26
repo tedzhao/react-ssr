@@ -1,7 +1,6 @@
 const express = require('express')
 const fs = require('fs')
 const path = require('path')
-const vm = require('vm')
 
 const app = express()
 const PORT = 3000
@@ -16,11 +15,13 @@ app.get('/favicon.ico', function(req, res){
 })
 
 const processRoute = (req, res) => {
-    const template = fs.readFileSync(__dirname + '/../build/indexSvr.html')
+    const template = fs.readFileSync(__dirname + '/../build/indexSvr.html', 'utf-8')
     const content = ReactDOMServer.renderToString(<App IsServer={true} Localtion={req.path}/>)
-    const result = vm.runInNewContext('`' + template + '`', { 'reactDom': content})
 
-    console.log(content)
+    const data = 10000
+    const dataStr = JSON.stringify(data)
+    const result = template.replace('<!--HTML_PLACEHOLDER-->',         content)
+                           .replace('<!--INITIAL_DATA_PLACEHOLDER-->', `<script>window.__initial_data=${dataStr}</script>`)
 
     res.writeHead(200, {"Content-Type": "text/html"})
     res.end(result)

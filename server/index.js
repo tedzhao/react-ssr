@@ -5,4 +5,8 @@ require('@babel/register')({
     presets: ['@babel/preset-env', '@babel/preset-react']
 })
 
+if (typeof window === 'undefined') {
+    global.window = {}
+}
+
 require('./server')

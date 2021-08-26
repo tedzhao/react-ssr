@@ -5,7 +5,9 @@ import { About } from './About'
 
 import { Provider as ReduxProvider } from "react-redux"
 import createStore from "../redux/store"
-const store = createStore(10)
+
+const defaultState = window.__initial_data ? window.__initial_data : 0;
+const store = createStore(defaultState)
 
 const NoMatch = () => {
     return (
