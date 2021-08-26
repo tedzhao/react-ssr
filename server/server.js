@@ -20,6 +20,8 @@ const processRoute = (req, res) => {
     const content = ReactDOMServer.renderToString(<App IsServer={true} Localtion={req.path}/>)
     const result = vm.runInNewContext('`' + template + '`', { 'reactDom': content})
 
+    console.log(content)
+
     res.writeHead(200, {"Content-Type": "text/html"})
     res.end(result)
 }

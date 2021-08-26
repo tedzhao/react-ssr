@@ -1,7 +1,11 @@
 import React from 'react'
 import { BrowserRouter, StaticRouter, Route, Switch, Link } from 'react-router-dom'
-import { Home } from './Home'
+import Home from './Home'
 import { About } from './About'
+
+import { Provider as ReduxProvider } from "react-redux"
+import createStore from "../redux/store"
+const store = createStore(10)
 
 const NoMatch = () => {
     return (
@@ -32,15 +36,16 @@ const AppContent = () => {
 }
 
 export const App = ({IsServer = false, Localtion}) => {
-    if (IsServer){
-        return <StaticRouter location={Localtion}>
+    const content = IsServer ? ( 
+        <StaticRouter location={Localtion}>
             <AppContent />
-        </StaticRouter>
-    }
-
-    return (
-        <BrowserRouter>
+        </StaticRouter>) 
+        : 
+        (<BrowserRouter>
             <AppContent />
-        </BrowserRouter>
-    )
+        </BrowserRouter>)
+    
+    return (<ReduxProvider store={store}>
+       {content}
+    </ReduxProvider>)
 }
