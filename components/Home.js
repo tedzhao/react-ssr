@@ -14,7 +14,7 @@ const Home = ({count, handleIncrementClick, handleDecrementClick}) => {
 }
 
 const mapStateToProps = ( state ) => ( {
-    count: state
+    count: state.count
 })
 
 const mapDispatchToProps = dispatch => {

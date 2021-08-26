@@ -3,12 +3,6 @@ import { BrowserRouter, StaticRouter, Route, Switch, Link } from 'react-router-d
 import Home from './Home'
 import { About } from './About'
 
-import { Provider as ReduxProvider } from "react-redux"
-import createStore from "../redux/store"
-
-const defaultState = window.__initial_data ? window.__initial_data : 0;
-const store = createStore(defaultState)
-
 const NoMatch = () => {
     return (
       <div>
@@ -29,7 +23,7 @@ const AppContent = () => {
                     <Home />
                 </Route>
                 <Route path="/about">
-                    <About />
+                    <About Address1="#34 GaoXin Road 6" Address2="Xi'an, 710075 China"/>
                 </Route>
                 <Route component={NoMatch} />
             </Switch>
@@ -47,7 +41,5 @@ export const App = ({IsServer = false, Localtion}) => {
             <AppContent />
         </BrowserRouter>)
     
-    return (<ReduxProvider store={store}>
-       {content}
-    </ReduxProvider>)
+    return content
 }
